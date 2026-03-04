@@ -41,8 +41,8 @@ Private Function NormalizeListInput(ByVal s As String) As String
 
     ' Normalise all "range separators" to colon
     s = Replace(s, "-", ":")
-    s = Replace(s, Chr$(8211), ":") ' en dash
-    s = Replace(s, Chr$(8212), ":") ' em dash
+    s = Replace(s, ChrW(8211), ":") ' FIX: ChrW() required for Unicode U+2013 en dash; Chr$() is ANSI-only (0-255)
+    s = Replace(s, ChrW(8212), ":") ' FIX: ChrW() required for Unicode U+2014 em dash; Chr$() is ANSI-only (0-255)
     s = Replace(s, ".", ":")
 
     ' Collapse runs of commas produced by the above

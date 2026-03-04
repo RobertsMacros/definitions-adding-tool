@@ -1,0 +1,8 @@
+# Treat VBA binary resource files as binary so git never applies
+# CRLF/LF line-ending conversion to them.
+*.frx binary
+
+# Treat VBA text source files with CRLF line endings (Windows standard).
+*.frm text eol=crlf
+*.bas text eol=crlf
+*.cls text eol=crlf
