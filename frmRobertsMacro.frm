@@ -135,7 +135,7 @@ Private Sub btnSaveChoices_Click()
 End Sub
 
 Private Sub btnRunRobertsMacro_Click()
-    RunRobertsMacro_FromUI _
+    RunDefinitionsTool _
         Me.txtDefinitionsCol.Text, _
         Me.txtClauseCols.Text, _
         Me.txtRowRanges.Text

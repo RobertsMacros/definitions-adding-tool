@@ -229,6 +229,69 @@ Public Function URLEncode(ByVal sText As String) As String
     URLEncode = sOut
 End Function
 
+' Normalise a single column letter (e.g. " al " -> "AL").
+Public Function NormaliseCol(ByVal s As String) As String
+    s = UCase$(Trim$(s))
+    s = Replace(s, " ", "")
+    NormaliseCol = s
+End Function
+
+' Normalise a comma-separated column list (e.g. " h : ak " -> "H:AK").
+Public Function NormaliseCols(ByVal s As String) As String
+    s = UCase$(Trim$(s))
+    s = Replace(s, " ", "")
+    NormaliseCols = s
+End Function
+
+' Normalise a row-ranges string (e.g. " 2 - 500 " -> "2-500").
+Public Function NormaliseRowRanges(ByVal s As String) As String
+    s = Trim$(s)
+    s = Replace(s, " ", "")
+    NormaliseRowRanges = s
+End Function
+
+' Validate the three normalised inputs.
+' Returns "" if all are valid; otherwise returns a user-readable error message.
+Public Function ValidateInputs(ByVal defsCol As String, _
+                               ByVal clauseCols As String, _
+                               ByVal rowRanges As String) As String
+    If defsCol = "" Then
+        ValidateInputs = "Definitions column cannot be empty (e.g. AL)."
+        Exit Function
+    End If
+
+    If ColumnLetterToNumber(defsCol) = 0 Then
+        ValidateInputs = "Definitions column is not a valid column letter (e.g. AL): """ & defsCol & """"
+        Exit Function
+    End If
+
+    If clauseCols = "" Then
+        ValidateInputs = "Clause columns cannot be empty (e.g. H:AK or C,E,G)."
+        Exit Function
+    End If
+
+    Dim arrCols() As Long
+    arrCols = ParseColumnList(clauseCols)
+    If UBound(arrCols) = 0 And arrCols(0) = 0 Then
+        ValidateInputs = "Clause columns could not be parsed (e.g. H:AK or C,E,G): """ & clauseCols & """"
+        Exit Function
+    End If
+
+    If rowRanges = "" Then
+        ValidateInputs = "Row ranges cannot be empty (e.g. 2:500 or 2,5,10)."
+        Exit Function
+    End If
+
+    Dim arrRows() As Long
+    arrRows = ParseRowList(rowRanges)
+    If UBound(arrRows) = 0 And arrRows(0) = 0 Then
+        ValidateInputs = "Row ranges could not be parsed (e.g. 2:500 or 2,5,10): """ & rowRanges & """"
+        Exit Function
+    End If
+
+    ValidateInputs = ""
+End Function
+
 ' Dump character-by-character breakdown of a string to the Immediate Window.
 ' Useful for diagnosing invisible / non-printing characters.
 Public Sub DebugShowChars(ByVal label As String, ByVal s As String)
