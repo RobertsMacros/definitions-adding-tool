@@ -27,11 +27,14 @@ Public Sub SaveUserChoices(ByVal defsCol As String, _
     End If
 
     ws.Range("A1").Value = "DefinitionsColumn"
-    ws.Range("B1").Value = defsCol
+    ws.Cells(1, 2).NumberFormat = "@" ' FIX: force text so e.g. "AL" is never parsed as a date/time
+    ws.Cells(1, 2).Value = defsCol
     ws.Range("A2").Value = "ClauseColumns"
-    ws.Range("B2").Value = clauseCols
+    ws.Cells(2, 2).NumberFormat = "@" ' FIX: force text so e.g. "H:AK" is never parsed as a date/time
+    ws.Cells(2, 2).Value = clauseCols
     ws.Range("A3").Value = "RowRanges"
-    ws.Range("B3").Value = rowRanges
+    ws.Cells(3, 2).NumberFormat = "@" ' FIX: force text so e.g. "5:20" is never stored as a time fraction
+    ws.Cells(3, 2).Value = rowRanges
 
 End Sub
 
