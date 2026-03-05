@@ -10,6 +10,8 @@ Private Sub UserForm_Initialize()
     Me.btnRunRobertsMacro.Caption = "Run Macro"
     Me.btnSaveChoices.Caption = "Save Choices"
     Me.btnClose.Caption = "Close"
+    Me.Left = Application.Left + (Application.Width - Me.Width) / 2
+    Me.Top = Application.Top + (Application.Height - Me.Height) / 2
 
 End Sub
 Private Sub btnSaveChoices_Click()
