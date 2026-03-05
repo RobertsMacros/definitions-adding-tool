@@ -11,7 +11,7 @@ Public Sub Launch_RobertsMacro_UI()
     #If Mac Then
         Launch_RobertsMacro_MacSafe
     #Else
-        frmRobertsMacro.Show
+        frmRobertsMacro.Show vbModeless
     #End If
 End Sub
 

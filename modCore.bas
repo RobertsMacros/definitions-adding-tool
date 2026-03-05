@@ -277,7 +277,7 @@ Private Function IsWordBoundary(ByVal ch As String, Optional ByVal isBefore As B
     End If
 End Function
 
-' Bold the "Relevant Definitions:" label text inside a cell.
+' Bold the "Relevant Definitions:" label and bold+italic each definition term.
 Private Sub ApplyFormattingToCell(ByVal targetCell As Range, ByVal labelText As String)
     Dim fullText As String
     Dim labelPos As Long
@@ -286,5 +286,33 @@ Private Sub ApplyFormattingToCell(ByVal targetCell As Range, ByVal labelText As 
     labelPos = InStr(1, fullText, labelText, vbTextCompare)
     If labelPos = 0 Then Exit Sub
 
+    ' Bold the "Relevant Definitions:" label
     targetCell.Characters(labelPos, Len(labelText)).Font.Bold = True
+
+    ' Bold+italic each definition term in the block
+    Dim defBlockStart As Long
+    defBlockStart = labelPos + Len(labelText)
+
+    Dim defParts() As String
+    defParts = Split(Mid$(fullText, defBlockStart), vbLf & vbLf)
+
+    Dim i As Long
+    For i = LBound(defParts) To UBound(defParts)
+        Dim defEntry As String
+        defEntry = Trim$(defParts(i))
+        If defEntry <> "" Then
+            Dim keyPhrase As String
+            keyPhrase = ExtractKeyPhrase_W(defEntry)
+            If keyPhrase <> "" Then
+                Dim termPos As Long
+                termPos = InStr(defBlockStart, fullText, keyPhrase, vbTextCompare)
+                If termPos > 0 Then
+                    With targetCell.Characters(termPos, Len(keyPhrase)).Font
+                        .Bold = True
+                        .Italic = True
+                    End With
+                End If
+            End If
+        End If
+    Next i
 End Sub
