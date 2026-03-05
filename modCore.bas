@@ -304,9 +304,14 @@ Private Sub ApplyFormattingToCell(ByVal targetCell As Range, ByVal labelText As 
             Dim keyPhrase As String
             keyPhrase = ExtractKeyPhrase_W(defEntry)
             If keyPhrase <> "" Then
+                ' Only bold+italic the term when it follows a line break AND
+                ' precedes " means" — prevents false matches inside definition bodies.
+                Dim searchFor As String
+                searchFor = vbLf & keyPhrase & " means"
                 Dim termPos As Long
-                termPos = InStr(defBlockStart, fullText, keyPhrase, vbTextCompare)
+                termPos = InStr(defBlockStart, fullText, searchFor, vbTextCompare)
                 If termPos > 0 Then
+                    termPos = termPos + 1 ' skip the leading vbLf; point at the term
                     With targetCell.Characters(termPos, Len(keyPhrase)).Font
                         .Bold = True
                         .Italic = True
