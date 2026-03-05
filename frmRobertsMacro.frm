@@ -84,16 +84,6 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmRobertsMacro
       _ExtentX        =   3387
       _ExtentY        =   741
    End
-   Begin MSForms.CommandButton btnReportBug
-      Caption         =   "Report a bug"
-      Height          =   420
-      Left            =   3840
-      TabIndex        =   8
-      Top             =   1920
-      Width           =   1320
-      _ExtentX        =   2329
-      _ExtentY        =   741
-   End
    Begin MSForms.CommandButton btnClose
       Cancel          =   -1
       Caption         =   "Close"
@@ -117,53 +107,31 @@ Private Sub UserForm_Initialize()
     '=== Load saved preferences ===
     Dim defsCol As String, clauseCols As String, rowRanges As String
     LoadUserChoices defsCol, clauseCols, rowRanges
-
     '=== Set labels and populate textboxes ===
-    Me.lblDefsCol.Caption    = "Definitions column (e.g. AL):"
+    Me.lblDefsCol.Caption = "Definitions column (e.g. AL):"
     Me.lblClauseCols.Caption = "Clause columns (e.g. H:AK):"
-    Me.lblRowRanges.Caption  = "Rows to process (e.g. 2:500):"
-
-    If defsCol    <> "" Then Me.txtDefinitionsCol.Text = defsCol
-    If clauseCols <> "" Then Me.txtClauseCols.Text     = clauseCols
-    If rowRanges  <> "" Then Me.txtRowRanges.Text      = rowRanges
-
+    Me.lblRowRanges.Caption = "Rows to process (e.g. 2:500):"
+    If defsCol <> "" Then Me.txtDefinitionsCol.Text = defsCol
+    If clauseCols <> "" Then Me.txtClauseCols.Text = clauseCols
+    If rowRanges <> "" Then Me.txtRowRanges.Text = rowRanges
     Me.btnRunRobertsMacro.Caption = "Run Macro"
-    Me.btnSaveChoices.Caption     = "Save Choices"
-    Me.btnClose.Caption           = "Close"
-    Me.btnReportBug.Visible       = False
-End Sub
+    Me.btnSaveChoices.Caption = "Save Choices"
+    Me.btnClose.Caption = "Close"
 
+End Sub
 Private Sub btnSaveChoices_Click()
     SaveUserChoices _
         Me.txtDefinitionsCol.Text, _
         Me.txtClauseCols.Text, _
         Me.txtRowRanges.Text
-
     MsgBox "Choices saved. They will auto-load next time.", vbInformation
 End Sub
-
 Private Sub btnRunRobertsMacro_Click()
     RunDefinitionsTool _
         Me.txtDefinitionsCol.Text, _
         Me.txtClauseCols.Text, _
         Me.txtRowRanges.Text
 End Sub
-
-Private Sub btnReportBug_Click()
-    Dim mailTo As String
-    Dim subj As String
-    Dim body As String
-
-    mailTo = "robert.stevens@freshfields.com"
-    subj = "Robert's Definitions Tool - Bug Report"
-    body = "Describe the issue here..."
-
-    Application.FollowHyperlink _
-        "mailto:" & mailTo & _
-        "?subject=" & URLEncode(subj) & _
-        "&body=" & URLEncode(body)
-End Sub
-
 Private Sub btnClose_Click()
     Unload Me
 End Sub
