@@ -57,8 +57,18 @@ Public Sub LoadUserChoices(ByRef defsCol As String, _
         Exit Sub
     End If
 
-    defsCol = CStr(ws.Range("B1").Value)
-    clauseCols = CStr(ws.Range("B2").Value)
-    rowRanges = CStr(ws.Range("B3").Value)
+    defsCol    = ReadTextCell(ws.Cells(1, 2))
+    clauseCols = ReadTextCell(ws.Cells(2, 2))
+    rowRanges  = ReadTextCell(ws.Cells(3, 2))
 
 End Sub
+
+' Returns the cell's value as text, or "" if numeric (e.g. a time/date
+' that Excel auto-parsed from a prior save without the "@" number format).
+Private Function ReadTextCell(ByVal cell As Range) As String
+    If Not IsEmpty(cell.Value) And IsNumeric(cell.Value) Then
+        ReadTextCell = ""
+    Else
+        ReadTextCell = CStr(cell.Value)
+    End If
+End Function
