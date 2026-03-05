@@ -1,6 +1,6 @@
 # Robert's Definitions Tool
 
-An Excel VBA macro that automatically inserts the correct **Relevant Definitions** under the clauses in agreements. Instead of searching manually, the tool reads the definitions column you specify, matches the defined terms used in each clause, and inserts only the definitions that apply — formatted correctly.
+An Excel VBA macro that automatically inserts the correct **Relevant Definitions** under clauses extracted from agreements. Instead of searching manually, the tool reads the definitions column you specify, matches the defined terms used in each clause, and inserts only the definitions that apply — formatted correctly.
 
 ---
 
