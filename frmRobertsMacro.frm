@@ -113,7 +113,7 @@ Private Sub UserForm_Initialize()
     Me.lblRowRanges.Caption = "Rows to process (e.g. 2:500):"
     If defsCol <> "" Then Me.txtDefinitionsCol.Text = defsCol
     If clauseCols <> "" Then Me.txtClauseCols.Text = clauseCols
-    If rowRanges <> "" Then Me.txtRowRanges.Text = rowRanges
+    Me.txtRowRanges.Text = IIf(rowRanges <> "", rowRanges, "2:500")
     Me.btnRunRobertsMacro.Caption = "Run Macro"
     Me.btnSaveChoices.Caption = "Save Choices"
     Me.btnClose.Caption = "Close"
