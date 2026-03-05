@@ -81,5 +81,8 @@ If you run the tool again, the existing definitions block is replaced rather tha
 | `modCore.bas` | Core engine: definition matching and cell writing |
 | `modSettings.bas` | Persist and load user choices in a hidden worksheet |
 | `frmRobertsMacro.frm` | UserForm definition and event handlers |
+| `frmRobertsMacro.frx` | UserForm binary resource (required alongside the `.frm`) |
 
 To import into your workbook, open the VBA editor (**Alt + F11**), right-click the project, choose **Import File**, and import each `.bas` and `.frm` file.
+
+> **Important:** When importing `frmRobertsMacro.frm`, the matching `frmRobertsMacro.frx` file **must** be in the same folder. VBA reads the `.frx` automatically when you import the `.frm` — if it is missing you will get *"Class MSForms.Label was not a loaded control class"* errors for every control.
