@@ -6,8 +6,6 @@ An Excel VBA macro that automatically inserts the correct **Relevant Definitions
 
 ## Installation
 
-### Option 1 — Excel Add-in (.xlam) — recommended
-
 1. Download **`RobertsDefinitionsTool.xlam`** from this repository.
 2. Open Excel and go to **File → Options → Add-ins**.
 3. At the bottom, set the **Manage** dropdown to **Excel Add-ins** and click **Go**.
@@ -15,17 +13,6 @@ An Excel VBA macro that automatically inserts the correct **Relevant Definitions
 5. Make sure the checkbox next to **RobertsDefinitionsTool** is ticked and click **OK**.
 
 The tool is now installed and available in every workbook. Press **Alt + F8**, select **`Launch_RobertsMacro_UI`**, and click **Run** to open it.
-
-> **Tip:** If Excel asks whether to trust the file, click **Enable** or **Trust**.
-
----
-
-### Option 2 — Import source files manually
-
-1. Download the files from the [`src/`](src/) folder in this repository.
-2. Open your workbook in Excel and press **Alt + F11** to open the VBA editor.
-3. Right-click your project in the left panel, choose **Import File**, and import each `.bas` and `.frm` file from the `src/` folder.
-4. Close the VBA editor and press **Alt + F8** to run **`Launch_RobertsMacro_UI`**.
 
 ---
 
@@ -67,13 +54,13 @@ Multiple definitions in a single cell must be separated by a pipe character `|`:
 Fun means Contract Review.|Contract Review means work.|Work means fun.
 ```
 
-> **Tip:** Ask an AI assistant to format your definitions list correctly if needed.
+> **Tip:** Ask an AI assistant to format your definitions list correctly.
 
 ---
 
 ## What the tool does when you click Run
 
-1. Reads the definitions from the column you specified.
+1. Reads the definitions from the column(s) you specified.
 2. Scans each clause cell in the columns and rows you specified.
 3. Matches any defined terms that appear in the clause text.
 4. Inserts a **`Relevant Definitions:`** block at the bottom of each matching cell, listing only the definitions that are actually used in that clause.
@@ -96,7 +83,7 @@ If you run the tool again, the existing definitions block is replaced rather tha
 
 The source files are in the [`src/`](src/) folder. You can import the `.bas` and `.frm` files directly into the VBA editor as described above.
 
-> **Note on `.frx` files:** A `.frx` file is a binary companion file that Excel generates alongside a `.frm` UserForm. It is **not included** in this repository because it cannot be meaningfully imported on its own — it stores binary layout data that is machine-generated and not human-editable. The `.frm` file contains all the actual code and control definitions; Excel regenerates the `.frx` automatically when you import and save the form.
+> **Note on `.frx` files:** A `.frx` file is a binary companion file that Excel generates alongside a `.frm` UserForm. It is **not included** in this repository because it cannot be meaningfully imported on its own — it stores binary layout data that is machine-generated and not human-editable. The `.frm` file contains all the actual code and control definitions; Excel regenerates the `.frx` automatically when you import and save the form. However, you may need to recreate the userform from scratch, and then add the `.frm` code to the userform. To edit the underlying source code, it is easiest to import modules to the .xlam directly. Userforms cannot be created on Mac. 
 
 ---
 
