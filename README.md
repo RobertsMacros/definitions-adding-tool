@@ -45,8 +45,7 @@ Fun means Contract Review.|Contract Review means work.|Work means fun.
 | Button | What it does |
 |---|---|
 | **Save choices** | Saves the three input fields into a hidden sheet so they auto-load next time. |
-| **Run RobertsMacro** | Runs the tool using your inputs. |
-| **Report a bug** | Opens a pre-addressed email to report issues. |
+| **Run** | Runs the tool using your inputs. |
 | **Close** | Closes the form. |
 
 ---
