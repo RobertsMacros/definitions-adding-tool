@@ -1,16 +1,18 @@
 # Robert's Definitions Tool
 
+**Roberts Macros: no macro too micro.**
+
 An Excel VBA macro that automatically inserts the correct **Relevant Definitions** under clauses extracted from agreements. Instead of searching manually, the tool reads the definitions column you specify, matches the defined terms used in each clause, and inserts only the definitions that apply — formatted correctly.
 
 ---
 
 ## Installation
 
-1. Download **`RobertsDefinitionsTool.xlam`** from this repository.
+1. Download **`Relevant Definitions - Macro.xlam`** from this repository.
 2. Open Excel and go to **File → Options → Add-ins**.
 3. At the bottom, set the **Manage** dropdown to **Excel Add-ins** and click **Go**.
 4. Click **Browse**, navigate to where you saved the `.xlam` file, select it, and click **OK**.
-5. Make sure the checkbox next to **RobertsDefinitionsTool** is ticked and click **OK**.
+5. Make sure the checkbox next to the add-in is ticked and click **OK**.
 
 The tool is now installed and available in every workbook. Press **Alt + F8**, select **`Launch_RobertsMacro_UI`**, and click **Run** to open it.
 
